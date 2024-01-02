@@ -26,5 +26,16 @@ class ExerciseModel (
     fun setImage(Image:Int){
         this.image = image
     }
-
+    fun getIsCompleted():Boolean{
+        return isCompleted
+    }
+    fun getIsCompleted(isCompleted:Boolean){
+        this.isCompleted = isCompleted
+    }
+    fun getIsSelected():Boolean{
+        return isSelected
+    }
+    fun setIsSelected(isSelected: Boolean){
+        this.isSelected = isSelected
+    }
 }

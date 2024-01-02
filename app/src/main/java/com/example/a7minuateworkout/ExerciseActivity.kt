@@ -9,11 +9,16 @@ import com.example.a7minuateworkout.databinding.ActivityExerciseBinding
 
 class ExerciseActivity : AppCompatActivity() {
     private var binding : ActivityExerciseBinding? = null
+
     private var restTimer:CountDownTimer? = null
     private var restProgress = 0
 
     private var exerciseTimer:CountDownTimer? = null
     private var exerciseProgress = 0
+
+    private var exerciseList:ArrayList<ExerciseModel>? = null
+    private var currentExercisePosition = -1
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityExerciseBinding.inflate(layoutInflater)
@@ -24,6 +29,9 @@ class ExerciseActivity : AppCompatActivity() {
         if (supportActionBar!=null){
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
         }
+
+        exerciseList = Constants.defaultExerciseList()
+
         binding?.toolBarExercise?.setNavigationOnClickListener {
             onBackPressed()
         }
@@ -56,6 +64,7 @@ class ExerciseActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
+                currentExercisePosition++
                 setupExerciseView()
                 Toast.makeText(this@ExerciseActivity,"Here we will start the exercise",Toast.LENGTH_SHORT).show()
             }
