@@ -1,5 +1,7 @@
 package com.example.a7minuateworkout
 
+import android.media.MediaPlayer
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -8,6 +10,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.example.a7minuateworkout.databinding.ActivityExerciseBinding
+import java.lang.Exception
 import java.util.Locale
 
 class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
@@ -23,7 +26,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private var currentExercisePosition = -1
 
     private var tts : TextToSpeech? = null
-
+    private var player : MediaPlayer? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityExerciseBinding.inflate(layoutInflater)
@@ -45,6 +48,19 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         setupRestView()
     }
     private fun setupRestView(){
+
+        try {
+            val soundURI = Uri.parse("android.resource://com.example.a7minuateworkout/" + R.raw.press_start)
+            player = MediaPlayer.create(applicationContext,soundURI)
+            player?.isLooping = false
+            player?.start()
+        }catch (e: Exception){
+            Log.e("MusicUri",e.toString())
+        }
+
+
+
+
         binding?.flRestView?.visibility = View.VISIBLE
         binding?.tvTitle?.visibility = View.VISIBLE
         binding?.tvExerciseName?.visibility = View.INVISIBLE
@@ -81,7 +97,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     }
     private fun setRestProgressBar(){
         binding?.progressBar?.progress = restProgress
-        restTimer = object: CountDownTimer(1000,1000){
+        restTimer = object: CountDownTimer(10000,1000){
             override fun onTick(millisUntilFinished: Long) {
                 restProgress++
                 binding?.progressBar?.progress = 10-restProgress
@@ -99,7 +115,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     private fun setExerciseProgressBar(){
         binding?.progressBarExercise?.progress = exerciseProgress
-        exerciseTimer = object: CountDownTimer(3000,1000){
+        exerciseTimer = object: CountDownTimer(30000,1000){
             override fun onTick(millisUntilFinished: Long) {
                 exerciseProgress++
                 binding?.progressBarExercise?.progress = 30-exerciseProgress
@@ -130,6 +146,10 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         if (tts!=null){
             tts?.stop()
             tts?.shutdown()
+        }
+
+        if(player!=null){
+            player!!.stop()
         }
         binding = null
     }
