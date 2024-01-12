@@ -9,6 +9,7 @@ import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a7minuateworkout.databinding.ActivityExerciseBinding
 import java.lang.Exception
 import java.util.Locale
@@ -27,6 +28,8 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     private var tts : TextToSpeech? = null
     private var player : MediaPlayer? = null
+
+    private var exerciseAdapter : ExerciseStatusAdapter? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityExerciseBinding.inflate(layoutInflater)
@@ -46,7 +49,15 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             onBackPressed()
         }
         setupRestView()
+        setupExerciseRecyclerView()
     }
+
+    private fun setupExerciseRecyclerView(){
+        binding?.rvExerciseStatusView?.layoutManager = LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false)
+        exerciseAdapter = ExerciseStatusAdapter(exerciseList!!)
+        binding?.rvExerciseStatusView?.adapter = exerciseAdapter
+    }
+
     private fun setupRestView(){
 
         try {
