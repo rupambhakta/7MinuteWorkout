@@ -29,7 +29,7 @@ class ExerciseModel (
     fun getIsCompleted():Boolean{
         return isCompleted
     }
-    fun getIsCompleted(isCompleted:Boolean){
+    fun setIsCompleted(isCompleted:Boolean){
         this.isCompleted = isCompleted
     }
     fun getIsSelected():Boolean{
