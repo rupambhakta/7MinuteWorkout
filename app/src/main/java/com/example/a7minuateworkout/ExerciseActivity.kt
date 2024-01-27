@@ -1,5 +1,6 @@
 package com.example.a7minuateworkout
 
+import android.app.Dialog
 import android.content.Intent
 import android.media.MediaPlayer
 import android.net.Uri
@@ -12,6 +13,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a7minuateworkout.databinding.ActivityExerciseBinding
+import com.example.a7minuateworkout.databinding.DialocCustomBackConfermationBinding
 import java.lang.Exception
 import java.util.Locale
 
@@ -50,10 +52,28 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         tts = TextToSpeech(this,this)
 
         binding?.toolBarExercise?.setNavigationOnClickListener {
-            onBackPressed()
+           customDialogForBackButton()
         }
         setupRestView()
         setupExerciseRecyclerView()
+    }
+
+    override fun onBackPressed() {
+        customDialogForBackButton()
+    }
+    private fun customDialogForBackButton() {
+        val customDialog = Dialog(this)
+        val dialogBinding = DialocCustomBackConfermationBinding.inflate(layoutInflater)
+        customDialog.setContentView(dialogBinding.root)
+        customDialog.setCanceledOnTouchOutside(false)
+        dialogBinding.btnYes.setOnClickListener {
+            this@ExerciseActivity.finish()
+            customDialog.dismiss()
+        }
+        dialogBinding.btnNo.setOnClickListener {
+            customDialog.dismiss()
+        }
+        customDialog.show()
     }
 
     private fun setupExerciseRecyclerView(){
