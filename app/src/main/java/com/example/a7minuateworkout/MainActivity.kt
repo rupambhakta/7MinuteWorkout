@@ -20,6 +20,10 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             Toast.makeText(this@MainActivity,"Here we will start the exercise.",Toast.LENGTH_SHORT).show()
         }
+        binding?.flBMI?.setOnClickListener {
+            val intent = Intent(this,BMIActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onDestroy() {
