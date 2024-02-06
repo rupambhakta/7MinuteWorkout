@@ -4,14 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".BMIActivity"
-    android:background="@color/white">
+    tools:context=".BMIActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_bmi_activity"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
-        app:titleTextColor="@color/black"
         android:background="#FFFFFF" />
 
     <RadioGroup
@@ -67,8 +65,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="WEIGHT (in kg)"
-            android:textColorHint="@color/black"
-            android:textColor="@color/black"
             android:inputType="numberDecimal"
             android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -89,8 +85,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="HEIGHT (in cm)"
-            android:textColorHint="@color/black"
-            android:textColor="@color/black"
             android:inputType="numberDecimal"
             android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -109,15 +103,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="WEIGHT (in kg)"
-            android:textColorHint="@color/black"
-            android:textColor="@color/black"
             android:inputType="numberDecimal"
             android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
-    <!--positioned below tilMetricUnitWeight-->
 
-    <!--start-->
-    <!--Todo add us unit views-->
     <com.google.android.material.textfield.TextInputLayout
         android:layout_below="@id/tilMetricUnitWeight"
         android:id="@+id/tilMetricUsUnitHeightFeet"
@@ -138,8 +127,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Feet"
-            android:textColor="@color/black"
-            android:textColorHint="@color/black"
             android:inputType="numberDecimal"
             android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -170,8 +157,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Inch"
-            android:textColorHint="@color/black"
-            android:textColor="@color/black"
             android:inputType="numberDecimal"
             android:textSize="16sp" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -233,11 +218,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/llDiplayBMIResult"
         android:layout_gravity="bottom"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="50dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:backgroundTint="#00ACC1"
+        android:backgroundTint="@color/colorAccent"
         android:text="CALCULATE"
         android:textColor="#FFFFFF"
         android:textSize="18sp" />
